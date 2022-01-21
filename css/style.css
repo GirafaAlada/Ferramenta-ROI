@@ -1,0 +1,253 @@
+button{
+	height: 25px;
+	border-radius: 5px;
+}
+
+h4{
+	margin-bottom: 2px;
+}
+
+#div-corpo{
+	width: 100%;
+	max-width: 500px;
+}
+
+#titulo-principal{
+	font-size: 20px;
+}
+
+#div-estilos{
+	margin: 5px;
+}
+
+#div-data{
+	margin: 5px;
+}
+
+#div-mensagens textarea{
+	background-color: transparent;
+	border: 1px solid transparent;
+	height: 0px;
+}
+
+#div-observacoes textarea{
+	height: 150px;
+}
+
+#div-texto-plataforma textarea{
+	height: 18px;
+}
+
+#div-atendimento-roi-textos-tipologia{
+	font-size: 12px;
+	overflow: auto;
+	height: 150px;
+}
+
+#div-atendimento-roi-chk-tipologias, #div-atendimento-pre-roi-chk-tipologias{
+	overflow: auto;
+	height: 115px;
+	font-size: 12px;
+}
+
+#div-verificacoes-seguranca table{
+	font-size: 12px;
+}
+#div-verificacoes-seguranca table td{
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+
+#div-termo-compromisso{
+	font-size: 12px;
+	text-align: justify;
+	padding: 0 20px;
+	overflow: auto;
+	height: 120px;
+}
+
+#lbl-agencia:hover{
+	cursor: default;
+	text-decoration: underline;
+	font-weight: 900;
+}
+
+#div-atendimento-consulta-status-roi, #div-atendimento-outros-assunto{
+	font-size: 14px;
+}
+
+#titulo-principal:hover{
+	text-decoration: underline;
+	cursor: default;
+}
+
+#div-sobre{
+	font-size: 12px;
+}
+
+.select-tipologias{
+	text-transform: capitalize;
+}
+
+.centro{
+	text-align: center;
+}
+.esquerda{
+	text-align: left;
+}
+.direita{
+	text-align: right;
+	padding-right: 5px;
+	box-sizing: border-box;
+}
+.auto{
+	width: auto;
+}
+.cinco{
+	width: 5%;
+}
+.dez{
+	width: 10%;
+}
+.quinze{
+	width: 15%;
+}
+.vinte{
+	width: 20%;
+}
+.vinteecinco{
+	width: 25%;
+}
+.trinta{
+	width: 30%;
+}
+.quarenta{
+	width: 40%;
+}
+.quarentaecinco{
+	width: 45%;
+}
+.cinquenta{
+	width: 50%;
+}
+.sessenta{
+	width: 60%;
+}
+.setenta{
+	width: 70%;
+}
+.oitenta{
+	width: 80%;
+}
+.noventa{
+	width: 90%;
+}
+.cem{
+	width: 100%;
+}
+
+.div-cinco{
+	width: 5%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-dez{
+	width: 10%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-quinze{
+	width: 15%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-vinte{
+	width: 20%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-vinteecinco{
+	width: 25%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-trinta{
+	width: 30%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-trintaecinco{
+	width: 35%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-quarenta{
+	width: 40%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-cinquenta{
+	width: 50%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-sessenta{
+	width: 60%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-setenta{
+	width: 70%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-oitenta{
+	width: 80%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-oitentaecinco{
+	width: 85%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-noventa{
+	width: 90%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}
+.div-cem{
+	width: 100%;
+	display: inline-block;
+	margin: 2px -2px;
+	padding: 0 1px;
+	box-sizing: border-box;
+}

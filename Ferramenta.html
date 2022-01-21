@@ -1,0 +1,1461 @@
+<!--
+Versão: 2.5
+	- Atualização em frases de pareceres
+	- Ao selecionar o checkbox "ROI com Pré-ROI" no atendimento ROI, as verificações de segurança abrirão automaticamente e também fechará caso a opção seja desmarcada
+-->
+
+<html>
+	<head>
+		<title id = "titulo-sistema">Ferramenta ROI v2.6</title>
+		<meta charset = "utf-8"/>
+		<link id = "link-estilo" 			rel = "stylesheet" type = "text/css" href = "css/classico.css"/>
+		<link id = "link-estilo-principal"	rel = "stylesheet" type = "text/css" href = "css/style.css"/>
+		<link 								rel = "stylesheet" type = "text/css" href = "css/jquery.toast.min.css"/>
+		<script src = "js/jquery/jquery-3.3.1.min.js"></script>
+		<script src = "js/toast/dist/jquery.toast.min.js"></script>
+	</head>
+	<body>
+		<div id = "div-corpo">
+
+
+			<!--DIV-TOPO-->
+			<div id = "div-topo" class = "centro">
+				<div id = "div-estilos" class = "centro cem">
+					<select id = "select-estilo" class = "centro cem">
+						<option id = "estilo-bb"		value = "bb.css">			BB			</option>
+						<option id = "estilo-claro"		value = "claro.css">		Claro		</option>
+						<option id = "estilo-classico"	value = "classico.css">		Clássico	</option>
+						<option id = "estilo-escuro"	value = "escuro.css">		Escuro		</option>
+						<option id = "mace-windu"		value = "mace_windu.css">	Mace Windu	</option>
+					</select>
+				</div>
+				<div id = "div-titulo-principal">
+					<span id = "titulo-principal"></span>
+				</div>
+
+				<div id = "div-sobre" class = "atendimento cem esquerda" hidden = "true">
+					<label class = "div-vinte">	Programação:	</label><label>	F3879719 - Gustavo Mendes Belczak	</label><br>
+					<label class = "div-vinte">	Textos:			</label><label>	F2258541 - Danielle Wagner Bernardi	</label><br>
+					<label class = "div-vinte">	Versão:		</label><label>	2.6 de 09/2019							</label>
+				</div>
+
+				<div id = "div-data" class = "centro">
+					<label id = "lbl-data"></label>
+				</div>
+
+				<div id = "div-texto-plataforma">
+					<div class = "div-quinze"></div>
+					<div class = "div-setenta">
+						<textarea id = "texto-plataforma" class = "input cem" placeholder = "colar infos da plataforma"></textarea>
+					</div>
+					<div class = "div-quinze">
+						<button id = "btn-limpar" class = "cem">Limpar</button>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<!--DADOS CLIENTE-->
+			<div id = "div-cliente">
+				<div class = "div-quinze">			<label id = "lbl-nome-cliente"		class = "lbl-copy">			Nome:		</label></div>
+				<div class = "div-oitentaecinco">	<input id = "input-nome-cliente"	class = "input cem" 		type = "text" />	</div>
+				<div class = "div-quinze">			<label for = "agencia-cliente"		id = "lbl-agencia-cliente">	Agência:	</label></div>
+				<div class = "div-trintaecinco">	<input id = "input-agencia-cliente"	class = "input noventa" 	type = "text"/>		</div>
+				<div class = "div-quinze direita">	<label id = "lbl-conta-cliente"		class = "lbl-copy">			Conta:		</label></div>
+				<div class = "div-trintaecinco">	<input id = "input-conta-cliente"	class = "input cem" 		type = "text"/>		</div>
+				<div class = "div-quinze">			<label id = "lbl-cpf-cliente"		class = "lbl-copy">			CPF:		</label></div>
+				<div class = "div-trintaecinco">	<input id = "input-cpf-cliente"		class = "input noventa" 	type = "text">		</div>
+				<div class = "div-quinze direita">	<label id = "lbl-mci-cliente"		class = "lbl-copy">			MCI:		</label></div>
+				<div class = "div-trintaecinco">	<input id = "input-mci-cliente"		class = "input cem" 		type = "text">		</div>
+
+				<label id = "lbl-horario-atendimento">Horário:</label>
+				<input id = "input-horario-atendimento-00" class = "input quinze" type = "text"/>
+				<span id = "span-novo-horario-atendimento"></span>
+				<button id = "btn-novo-horario" class = "dez">+</button>
+				<button id = "btn-excluir-horario" class = "dez">-</button>
+			</div>
+
+
+
+			<!--DIV ASSUNTO-->
+			<div id = "div-assunto">
+				<div class = "div-vinteecinco"><button id = "btn-assunto-roi" 		class = "btn-assunto cem">	ROI			</button></div>
+				<div class = "div-vinteecinco"><button id = "btn-assunto-pre-roi" 	class = "btn-assunto cem">	Pré-ROI		</button></div>
+				<div class = "div-vinteecinco"><button id = "btn-assunto-consulta" 	class = "btn-assunto cem">	Consulta	</button></div>
+				<div class = "div-vinteecinco"><button id = "btn-assunto-outros" 	class = "btn-assunto cem">	Outros		</button></div>
+			</div>
+
+
+			<hr />
+
+
+			<!--DIV ATENDIMENTO-->
+			<div id = "div-atendimento">
+
+
+
+				<!--DIV ATENDIMENTO ROI-->
+				<div id = "div-atendimento-roi" class = "atendimento">
+					<h3 class = "centro">ROI</h3>
+					<div id = "div-atendimento-roi-textos">
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-arquivo"			class = "btn-textos cem">	Arquivo	</button></div>
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-plataforma"		class = "btn-textos cem">	Plataforma	</button></div>
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-excel"			class = "btn-textos cem">	Excel		</button></div>
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-parecer"			class = "btn-textos cem">	Parecer	</button></div>
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-bloqueio-deb"	class = "btn-textos cem">	Bloqueio	</button></div>
+					</div>
+					<div id = "div-atendimento-roi-pre-roi">
+						<span class = "div-dez"></span>
+						<input type = "checkbox" id = "chk-atendimento-roi-pre-roi"	value = "ROI com Pré-ROI"/><label for = "chk-atendimento-roi-pre-roi">ROI com Pré-ROI</label>
+					</div>
+					<div id = "div-atendimento-roi-dados">
+						<table class = "cem">
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-roi-numero-processo" class = "lbl-copy">ROI:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-roi-numero-processo" class = "input cem" type = "text"/></td>
+								<td rowspan = "4"><div id = "div-atendimento-roi-chk-tipologias" hidden = "true"></div></td>
+							</tr>
+							<tr id = "tr-atendimento-roi-fone-00">
+								<td class = "dez"><label id = "lbl-atendimento-roi-fone-00" class = "lbl-copy">Fone:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-roi-fone-00" class = "input cem" type = "text"/></td>
+							</tr>
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-roi-valor" class = "lbl-copy">Valor:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-roi-valor" class = "input cem" type = "text"/></td>
+							</tr>
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-roi-select-tipologias" class = "lbl-copy">Parec:</label></td>
+								<td class = "quarenta"><select id = "input-atendimento-roi-select-tipologias" class = "select-tipologias cem roi input"></select></td>
+							</tr>
+						</table>
+						<div id = "div-atendimento-roi-bloqueio-deb" hidden = "true">
+							<h4>Bloqueio DEB</h4>
+							<label class = "div-dez">Valor:</label>
+							<input id = "input-atendimento-roi-bloqueio-deb-valor" class = "input trinta"/>
+							<br>
+							<label class = "div-dez">Data:</label>
+							<input id = "input-atendimento-roi-bloqueio-deb-data" class = "input trinta"/>
+							<br>
+							<button id = "btn-atendimento-roi-bloqueio-deb-gerar-texto" class = "div-quinze">OK</button>
+							<button id = "btn-atendimento-roi-bloqueio-deb-cancelar-texto" class = "div-quinze">Cancelar</button>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+				<!--DIV ATENDIMENTO PRÉ-ROI-->
+				<div id = "div-atendimento-pre-roi" class = "atendimento">
+					<h3 class = "centro">Pré-ROI</h3>
+					<div id = "div-atendimento-pre-roi-textos">
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-arquivo">		Arquivo		</button></div>
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-plataforma">	Plataforma	</button></div>
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-excel">			Excel		</button></div>
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-ares">			ARES		</button></div>
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-bloqueio-deb">	Bloqueio	</button></div>
+					</div>
+					<div id = "div-atendimento-pre-roi-dados">
+						<table class = "cem">
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-pre-roi-numero-processo" class = "lbl-copy">ARES:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-pre-roi-numero-processo" class = "input cem"/></td>
+								<td rowspan = "4"><div id = "div-atendimento-pre-roi-chk-tipologias" hidden = "true"></div></td>
+							</tr>
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-pre-roi-fone" class = "lbl-copy">Fone:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-pre-roi-fone" class = "input cem"/></td>
+							</tr>
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-pre-roi-select-tipologias" class = "lbl-copy">Parec:</label></td>
+								<td class = "quarenta"><select id = "input-atendimento-pre-roi-select-tipologias" class = "select-tipologias cem pre-roi input"></select></td>
+							</tr>
+							<tr>
+								<td class = "dez"></td>
+								<td class = "quarenta"></td>
+							</tr>
+						</table>
+						<div id = "div-atendimento-pre-roi-bloqueio-deb" hidden = "true">
+							<h4>Bloqueio DEB</h4>
+							<label class = "div-dez">Valor:</label>
+							<input id = "input-atendimento-pre-roi-bloqueio-deb-valor" class = "input trinta"/>
+							<br>
+							<label class = "div-dez">Data:</label>
+							<input id = "input-atendimento-pre-roi-bloqueio-deb-data" class = "input trinta"/>
+							<br>
+							<button id = "btn-atendimento-pre-roi-bloqueio-deb-gerar-texto" class = "div-quinze">OK</button>
+							<button id = "btn-atendimento-pre-roi-bloqueio-deb-cancelar-texto" class = "div-quinze">Cancelar</button>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+				<!--DIV ATENDIMENTO CONSULTA-->
+				<div id = "div-atendimento-consulta" class = "atendimento">
+					<h3 class = "centro">Consulta</h3>
+					<div id = "div-atendimento-consulta-textos">
+						<div class = "div-vinteecinco"><button id = "btn-atendimento-consulta-arquivo"		class = "btn-textos cem">Arquivo</button></div>
+						<div class = "div-vinteecinco"><button id = "btn-atendimento-consulta-plataforma"	class = "btn-textos cem">Plataforma</button></div>
+						<div class = "div-vinteecinco"><button id = "btn-atendimento-consulta-excel"	class = "btn-textos cem">Excel</button></div>
+					</div>
+					<div id = "div-atendimento-consulta-dados-roi">
+						<div class = "div-quinze"><label id = "lbl-atendimento-consulta-roi" class = "lbl-copy">ROI:</label></div>
+						<div class = "div-oitentaecinco"><input id = "input-atendimento-consulta-roi" class = "cinquenta input" type = "text"/></div>
+					</div>
+					<div id = "div-atendimento-consulta-status-roi">
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-status" id = "rad-atendimento-consulta-status-encerrado-onus-bb" 					value = "encerrado-onus-bb"/>					<label for = "rad-atendimento-consulta-status-encerrado-onus-bb">					Encerrado: Ônus BB						</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-status" id = "rad-atendimento-consulta-status-encerrado-onus-bb-cdc-pendente" 		value = "encerrado-onus-bb-cdc-pendente"/>		<label for = "rad-atendimento-consulta-status-encerrado-onus-bb-cdc-pendente">		Encerrado: Ônus BB - CDC Pendente		</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-status" id = "rad-atendimento-consulta-status-encerrado-onus-bb-cdc-resolvido"		value = "encerrado-onus-bb-cdc-resolvido"/>		<label for = "rad-atendimento-consulta-status-encerrado-onus-bb-cdc-resolvido">		Encerrado: Ônus BB - CDC Resolvido		</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-status" id = "rad-atendimento-consulta-status-encerrado-onus-cliente"				value = "encerrado-onus-cliente"/>				<label for = "rad-atendimento-consulta-status-encerrado-onus-cliente">				Encerrado: Ônus Cliente					</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-status" id = "rad-atendimento-consulta-status-encerrado-onus-cliente-cdc-pendente"	value = "encerrado-onus-cliente-cdc-pendente"/>	<label for = "rad-atendimento-consulta-status-encerrado-onus-cliente-cdc-pendente">	Encerrado: Ônus Cliente - CDC Pendente	</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-status" id = "rad-atendimento-consulta-status-encerrado-onus-em-andamento"			value = "em-andamento"/>						<label for = "rad-atendimento-consulta-status-encerrado-onus-em-andamento">			Em Andamento							</label><br>
+					</div>
+				</div>
+
+
+
+
+
+
+				<!--DIV ATENDIMENTO OUTROS-->
+				<div id = "div-atendimento-outros" class = "atendimento">
+					<h3 class = "centro">Outros</h3>
+					<div id = "div-atendimento-outros-textos">
+						<div class = "div-vinteecinco"><button id = "btn-atendimento-outros-arquivo"	class = "btn-textos cem">Arquivo</button></div>
+						<div class = "div-vinteecinco"><button id = "btn-atendimento-outros-plataforma"	class = "btn-textos cem">Plataforma</button></div>
+						<div class = "div-vinteecinco"><button id = "btn-atendimento-outros-excel"	class = "btn-textos cem">Excel</button></div>
+					</div>
+					<div id = "div-atendimento-outros-assunto">
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-assunto" id = "rad-atendimento-consulta-assunto-cartao-contestacao"				value = "Cartão: Contestação"/>			<label for = "rad-atendimento-consulta-assunto-cartao-contestacao">			Cartão: Contestação			</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-assunto" id = "rad-atendimento-consulta-assunto-cartao-informacoes"				value = "Cartão: Informações"/>			<label for = "rad-atendimento-consulta-assunto-cartao-informacoes">			Cartão: Informações			</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-assunto" id = "rad-atendimento-consulta-assunto-conta-corrente-informacoes"		value = "Conta Corrente: Informações"/>	<label for = "rad-atendimento-consulta-assunto-conta-corrente-informacoes">	Conta Corrente: Informações	</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-assunto" id = "rad-atendimento-consulta-assunto-falha-ligacao"						value = "Falha Ligação"/>				<label for = "rad-atendimento-consulta-assunto-falha-ligacao">				Falha Ligação				</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-assunto" id = "rad-atendimento-consulta-assunto-transacoes-esclarecidas"			value = "Transações Esclarecidas"/>		<label for = "rad-atendimento-consulta-assunto-transacoes-esclarecidas">	Transações Esclarecidas		</label><br>
+						<input class = "input-radio" type = "radio" name = "rad-atendimento-consulta-assunto" id = "rad-atendimento-consulta-assunto-outros"							value = "Outros"/>						<label for = "rad-atendimento-consulta-assunto-outros">						Outros						</label><br>
+					</div>
+				</div>
+
+
+
+
+				<div id = "div-observacoes">
+					<textarea id = "observacoes" class = "input"></textarea>
+				</div>
+			</div>
+			<!--FIM DIV ATENDIMENTOS-->
+
+
+
+			<!--DIV VENDA SMS-->
+			<div id = "div-venda-sms">
+				<p><input type = "checkbox" class = "input" id = "chk-venda-sms"/><label for = "chk-venda-sms" id = "lbl-venda-sms">SMS Vendido</label></p>
+			</div>
+
+
+			<!--DIV VERIFICAÇÕES DE SEGURANÇA-->
+			<button id = "btn-verificacoes-seguranca" class = "cem">Verificações de Segurança</button>
+			<div id = "div-verificacoes-seguranca" class = "atendimento">
+				<table class = "cem">
+					<tr>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-ato">					<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-ato" 					value = "ATO"/>								<label for = "chk-verificar-seguranca-ato">					ATO								</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-agendamentos">			<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-agendamentos"			value = "Transações Agendadas"/>			<label for = "chk-verificar-seguranca-agendamentos">		Transações Agendadas			</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-bb-code">				<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-bb-code"				value = "BB Code"/>							<label for = "chk-verificar-seguranca-bb-code">				BB Code							</label></td>
+					</tr>
+					<tr>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-biometria">			<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-biometria"				value = "Biometria"/>						<label for = "chk-verificar-seguranca-biometria">			Biometria						</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-cartao">				<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-cartao"				value = "Cartão (inclusive Ourocard-E)"/>	<label for = "chk-verificar-seguranca-cartao">				Cartão (inclusive Ourocard-E)	</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-cdc">					<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-cdc"					value = "CDC"/>								<label for = "chk-verificar-seguranca-cdc">					CDC								</label></td>
+					</tr>
+					<tr>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-cheque">				<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-cheque"				value = "Cheques Emitidos - TAA"/>			<label for = "chk-verificar-seguranca-cheque">				Cheque							</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-contas-destino">		<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-contas-destino"		value = "Contas Destino de Transferência"/>	<label for = "chk-verificar-seguranca-contas-destino">		Contas Destino de Transferência	</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-contas-cadastradas">	<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-contas-cadastradas"	value = "Contas Cadastradas"/>				<label for = "chk-verificar-seguranca-contas-cadastradas">	Contas Cadastradas				</label></td>
+					</tr>
+					<tr>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-debito-automatico">	<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-debito-automatico"		value = "Débito Automático"/>				<label for = "chk-verificar-seguranca-debito-automatico">	Débito Automático				</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-endereco">				<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-endereco"				value = "Endereço"/>						<label for = "chk-verificar-seguranca-endereco">			Endereço						</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-poupanca">				<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-poupanca"				value = "Poupança"/>						<label for = "chk-verificar-seguranca-poupanca">			Poupança						</label></td>
+					</tr>
+					<tr>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-senhas">				<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-senhas"				value = "Senhas"/>							<label for = "chk-verificar-seguranca-senhas">				Senhas							</label></td>
+						<td class = "td-verificar-seguranca" id = "td-verificar-seguranca-sms">					<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-sms"					value = "SMS"/>								<label for = "chk-verificar-seguranca-sms">					SMS								</label></td>
+					</tr>
+				</table>
+			</div>
+
+			<!--DIV TERMO DE COMPROMISSO-->
+			<button id = "btn-termo-compromisso" class = "cem">Termo de Compromisso</button>
+			<div id = "div-termo-compromisso" class = "atendimento">
+				<p>As transações contestadas correspondem ao total de R$ XX,XX;</p>
+				<p>O Banco poderá realizar crédito na conta correspondente ao valor total contestado a título de adiantamento. Este valor não será considerado ressarcimento definitivo até a finalização da análise e apresentação da resposta final ao cliente.</p>
+				<p>Caso o Banco conclua pela improcedência da contestação e tenha realizado o adiantamento do valor contestado, o cliente autoriza, desde já, o débito da importância equivalente ao valor depositado, na mesma conta creditada.</p>
+				<p>Para apuração das irregularidades, o Banco do Brasil realizará investigações internas e externas, podendo levar os fatos ao conhecimento das Autoridades Policial e Judicial, ou Ministério Público na forma prevista na Lei Complementar nº 105/2001.</p>
+
+			</div>
+
+			<!--DIV ALINHAR TRANSACOES EXTRATO-->
+			<button id = "btn-alinhar-transacoes-extrato" class = "cem">Alinhar Transações do Extrato</button>
+			<div id = "div-alinhar-transacoes-extrato" class = "atendimento">
+				<textarea id = "alinhar-transacoes-extrato" class = "input cem"></textarea>
+				<button id = "btn-copiar-transacoes-alinhadas">Copiar</button>
+				<button id = "btn-limpar-transacoes-alinhadas">Limpar</button>
+			</div>
+
+
+			<!--DIV MENSAGENS-->
+			<div id = "div-mensagens">
+				<textarea id = "mensagens"></textarea>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function(){
+
+			alertaCDC = false;
+			navegador_atualizado = getVersaoNavegador();
+			carregarTitulo();
+			verificarEstilo();
+			limparConteudo();
+			carregarTipologias();
+			carregarData();
+			$('.atendimento').hide();
+
+			//ALTERAR ESTILO
+			$('#select-estilo').change(function(){
+				estilo = this.value;
+				$('head').children('#link-estilo')[0].outerHTML = '<link id = "link-estilo" rel = "stylesheet" type = "text/css" href = "css/'+ estilo +'">';
+			});
+
+			//MOSTRAR / ESCONDER INFORMAÇÕES DA FERRAMENTA
+			$('#titulo-principal').click(function(){
+				$('#div-sobre').toggle('slow');
+			});
+
+
+			//LIMPAR TODO O CONTEÚDO
+			$('#btn-limpar').click(function(){
+				limparConteudo();
+			});
+
+
+			//ADICIONAR CAMPO PARA INSERIR MAIS HORÁRIOS DE LIGAÇÃO (+ 3 NO MÁXIMO)
+			$('#btn-novo-horario').click(function(){
+				id_horario = $('#span-novo-horario-atendimento').children().length + 1;
+				if(id_horario <= 3){
+					html = '<input id = "input-horario-atendimento-0' + id_horario + '" class = "input quinze" type = "text" hidden = "true"/></div>';
+					$('#span-novo-horario-atendimento').append(html);
+					horario = new Date();
+					h = ('0'+horario.getHours()).slice(-2);
+					m = ('0'+horario.getMinutes()).slice(-2);
+					$('#input-horario-atendimento-0' + id_horario).val(h + 'h' + m);
+					$('#input-horario-atendimento-0' + id_horario).show('fast');
+
+
+					//Inserir novo campo para o número de telefone
+					html = '';
+					html += '<tr id = "tr-atendimento-roi-fone-0' + id_horario + '" class = "atendimento-novos-fones" hidden = "true">';
+						html += '<td class = "dez">';
+						html += 	'<label id = "lbl-atendimento-roi-fone-0' + id_horario + '" class = "lbl-copy">Fone:</label>';
+						html += '</td>';
+						html += '<td class = "quarenta">';
+						html += 	'<input id = "input-atendimento-roi-fone-0' + id_horario + '" class = "input cem" type = "text" value = "' + $('#input-atendimento-roi-fone-0' + (id_horario - 1)).val() + '"/>';
+						html += '</td>';
+					html += '</tr>';
+					$('#tr-atendimento-roi-fone-0' + (id_horario-1)).after(html);
+					$('#tr-atendimento-roi-fone-0' + id_horario).show('slow');
+				}else{
+					toastAmarelo('Número máximo de horários atingido','');
+				}
+			});
+
+			//EXCLUIR HORÁRIO/FONE NOVO
+			$('#btn-excluir-horario').click(function(){
+				aux = $('#span-novo-horario-atendimento').children();
+				tam_aux = aux.length;
+				if(tam_aux > 0){
+					$('#input-horario-atendimento-0' + tam_aux).hide('fast');
+					$('#tr-atendimento-roi-fone-0' + tam_aux).hide('slow');
+					setTimeout(function(){
+						$('#input-horario-atendimento-0' + tam_aux).remove();
+						$('#tr-atendimento-roi-fone-0' + tam_aux).remove();
+					}, '100');
+				}
+			});
+
+
+
+			//INCLUIR LINK PARA PROCURAR AGÊNCIA NO HUMANOGRAMA
+			$('#lbl-agencia-cliente').click(function(){
+				agencia = $('#input-agencia-cliente').val().split('-')[0];
+				link = 'https://humanograma.intranet.bb.com.br/busca?consulta=' + agencia;
+				window.open(link, '', 'width = 1200, height = 800, scrollbars = yes', '_blank');
+			});
+
+
+
+			//CHAMAR A FUNÇÃO QUE SEPARAR AS INFORMAÇÕES NA STRING COLADA DA PLATAFORMA
+			//setTimeOut() UTILIZADO PARA DAR TEMPO DAS INFORMAÇÕES SEREM COLADAS ANTES DO SCRIPT ATUAR
+			$('#texto-plataforma').on('paste', function(){
+				limparConteudo();
+				setTimeout(separarInfos, 10);
+			});
+
+
+
+			//Evento de click nos botões relacionados ao assunto do atendimento
+			//Mostrar a div-atendimento relacionada ao botão clicado
+			$('.btn-assunto').click(function(){
+				div_atendimento = this.id;
+				div_atendimento = div_atendimento.replace('btn-assunto','div-atendimento');
+				$('.atendimento').hide('slow');
+				$('.select-tipologias').val('0');
+				$('#div-atendimento-roi-chk-tipologias').children().remove();
+				$('#div-atendimento-pre-roi-chk-tipologias').children().remove();
+				$('#div-observacoes').show();
+				$('#' + div_atendimento).show('slow');
+
+				if(div_atendimento == 'div-atendimento-pre-roi'){
+					$('#div-verificacoes-seguranca').show('slow');
+					$('#div-alinhar-transacoes-extrato').show('slow');
+				}
+
+				if(div_atendimento == 'div-atendimento-roi'){
+					$('#div-alinhar-transacoes-extrato').show('slow');
+				}
+
+
+				$('.btn-assunto').removeClass('btn-atendimento-ativo');
+				$('.btn-assunto').addClass('btn-atendimento-inativo');
+				$(this).addClass('btn-atendimento-ativo');
+				$(this).removeClass('btn-atendimento-inativo');
+			});
+
+
+			//Abrir as verificações de segurança caso a opção "ROI com Pré-ROI seja selecionada durante o atendimento ROI"
+			$('#chk-atendimento-roi-pre-roi').click(function(){
+				if($('#div-atendimento-roi-pre-roi').find(':checked').val() == 'ROI com Pré-ROI'){
+					$('#div-verificacoes-seguranca').show('slow');
+				}else{
+					$('#div-verificacoes-seguranca').hide('slow');
+				}
+			});
+
+
+
+
+			/*BLOCO PARA GERAR TEXTOS****************************************************************/
+
+			//---------------ATENDIMENTO OUTROS--------------------
+			//ATENDIMENTO-OUTROS: GERAR TEXTO PARA ARQUIVO
+			$('#btn-atendimento-outros-arquivo').click(function(){
+				sms = verificarSMS();
+				texto_arquivo = '\n';
+				texto_arquivo += 'Horário:	' + $('#input-horario-atendimento-00').val() + '\n';
+				texto_arquivo += 'Nome:		' + $('#input-nome-cliente').val() + '\n';
+				texto_arquivo += 'Agência:	' + $('#input-agencia-cliente').val().trim() + '\n';
+				texto_arquivo += 'Conta:		' + $('#input-conta-cliente').val() + '\n';
+				texto_arquivo += 'CPF:		' + $('#input-cpf-cliente').val() + '\n';
+				texto_arquivo += 'MCI:		' + $('#input-mci-cliente').val() + '\n';
+				texto_arquivo += sms;
+				texto_arquivo += 'Assunto:	' + $('#div-atendimento-outros-assunto').find(':checked').val();
+				if($('#observacoes').val().length > 0){
+					texto_arquivo += '\n';
+				}
+				texto_arquivo += $('#observacoes').val() + '\n\n\n\n';
+				gerarTexto(texto_arquivo);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+
+				toastVerde('Texto para arquivo gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-OUTROS: GERAR TEXTO PARA PLATAFORMA
+			$('#btn-atendimento-outros-plataforma').click(function(){
+				texto_plataforma = 'CRBB SJP - Equipe ROI: ' + $('#observacoes').val();
+				gerarTexto(texto_plataforma);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para plataforma gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-OUTROS: GERAR TEXTO PARA EXCEL
+			$('#btn-atendimento-outros-excel').click(function(){
+				data = getDataAtual();
+				mci = $('#input-mci-cliente').val();
+				cliente = $('#input-nome-cliente').val();
+				assunto = $('#div-atendimento-outros-assunto').find(':checked').val();
+				numero_processo = '';
+				sms = verificarSMS();
+				if(sms != ''){
+					sms = 'X';
+				}else{
+					sms = '';
+				}
+				tipo_fraude = '';
+				valor = '';
+				texto_excel = data + '\t' + mci + '\t' + cliente + '\t' + assunto + '\t' + numero_processo + '\t' + sms + '\t' + tipo_fraude + '\t' + valor;
+				gerarTexto(texto_excel);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Registro para Excel gerado', 'gerar_texto');
+			});
+
+
+			//---------------ATENDIMENTO CONSULTA--------------------
+			//ATENDIMENTO-CONSULTA: GERAR TEXTO PARA ARQUIVO
+			$('#btn-atendimento-consulta-arquivo').click(function(){
+				sms = verificarSMS();
+				texto_arquivo = '\n';
+				texto_arquivo += 'Horário:	' + $('#input-horario-atendimento-00').val() + '\n';
+				texto_arquivo += 'Nome:		' + $('#input-nome-cliente').val() + '\n';
+				texto_arquivo += 'Agência:	' + $('#input-agencia-cliente').val().trim() + '\n';
+				texto_arquivo += 'Conta:		' + $('#input-conta-cliente').val() + '\n';
+				texto_arquivo += 'CPF:		' + $('#input-cpf-cliente').val() + '\n';
+				texto_arquivo += 'MCI:		' + $('#input-mci-cliente').val() + '\n';
+				texto_arquivo += sms;
+				texto_arquivo += 'Assunto: Consulta\n';
+				texto_arquivo += $('#observacoes').val() + '\n\n\n\n';
+				gerarTexto(texto_arquivo);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para arquivo gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-CONSULTA: GERAR TEXTO PARA PLATAFORMA
+			$('#btn-atendimento-consulta-plataforma').click(function(){
+				texto_plataforma = 'CRBB SJP - Equipe ROI: ' + $('#observacoes').val();
+				gerarTexto(texto_plataforma);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para plataforma gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-CONSULTA: GERAR TEXTO PARA EXCEL
+			$('#btn-atendimento-consulta-excel').click(function(){
+				data = getDataAtual();
+				mci = $('#input-mci-cliente').val();
+				cliente = $('#input-nome-cliente').val();
+				assunto = 'Consulta';
+				numero_processo = $('#input-atendimento-consulta-roi').val();
+				sms = verificarSMS();
+				tipo_fraude = '';
+				valor = '';
+				resultado = $('#div-atendimento-consulta-status-roi').find(':checked').val();
+				if(sms != ''){
+					sms = 'X';
+				}else{
+					sms = '';
+				}
+				texto_excel = data + '\t' + mci + '\t' + cliente + '\t' + assunto + '\t' + numero_processo + '\t' + sms + '\t' + tipo_fraude + '\t' + valor + '\t' + resultado;
+				gerarTexto(texto_excel);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Registro para Excel gerado', 'gerar_texto');
+			});
+
+			//---------------ATENDIMENTO ROI--------------------
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA ARQUIVO
+			$('#btn-atendimento-roi-arquivo').click(function(){
+				sms = verificarSMS();
+				texto_arquivo = '\n';
+				texto_arquivo += 'Horário:	'	+ $('#input-horario-atendimento-00').val() + '\n';
+				texto_arquivo += 'Nome:		'	+ $('#input-nome-cliente').val() + '\n';
+				texto_arquivo += 'Agência:	' 	+ $('#input-agencia-cliente').val().trim() + '\n';
+				texto_arquivo += 'Conta:		' 	+ $('#input-conta-cliente').val() + '\n';
+				texto_arquivo += 'CPF:		' 	+ $('#input-cpf-cliente').val() + '\n';
+				texto_arquivo += 'MCI:		' 	+ $('#input-mci-cliente').val() + '\n';
+				texto_arquivo += sms;
+				texto_arquivo += '======================================\n';
+				texto_arquivo += 'ROI:		' 	+ $('#input-atendimento-roi-numero-processo').val() + '\n';
+				texto_arquivo += 'Fone:		' 	+ $('#input-atendimento-roi-fone-00').val() + '\n';
+				texto_arquivo += 'Valor:		' 	+ $('#input-atendimento-roi-valor').val() + '\n';
+				texto_arquivo += 'Parecer:\n' 	+ $('#observacoes').val() + '\n';
+				texto_arquivo += '======================================\n\n\n\n';
+				gerarTexto(texto_arquivo);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para arquivo gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA PLATAFORMA
+			$('#btn-atendimento-roi-plataforma').click(function(){
+				texto_plataforma = 'CRBB SJP - Equipe ROI - Abertura de ROI, processo nº ' + $('#input-atendimento-roi-numero-processo').val() + '.';
+				if(alertaCDC){
+					texto_plataforma += 'Fraude com contratação de CDC, cliente orientado a manter valor em conta para cancelamento da operação.';
+				}
+				gerarTexto(texto_plataforma);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para plataforma gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA EXCEL
+			$('#btn-atendimento-roi-excel').click(function(){
+				data = getDataAtual();
+				mci = $('#input-mci-cliente').val();
+				cliente = $('#input-nome-cliente').val();
+				assunto = 'ROI';
+				if($('#div-atendimento-roi-pre-roi').find(':checked').val() == 'ROI com Pré-ROI'){
+					assunto = 'ROI com Pré-ROI';
+				}
+				numero_processo = $('#input-atendimento-roi-numero-processo').val();
+				sms = verificarSMS();
+				tipo_fraude = $('#input-atendimento-roi-select-tipologias').val();
+				valor = $('#input-atendimento-roi-valor').val();
+				if(sms != ''){
+					sms = 'X';
+				}else{
+					sms = '';
+				}
+				texto_excel = data + '\t' + mci + '\t' + cliente + '\t' + assunto + '\t' + numero_processo + '\t' + sms + '\t' + tipo_fraude + '\t' + valor;
+				gerarTexto(texto_excel);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Registro para Excel gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA PARECER
+			$('#btn-atendimento-roi-parecer').click(function(){
+				arr = $('#span-novo-horario-atendimento').children();
+				tam_arr = arr.length;
+				outros_horarios = Array();
+				for(i = 0; i < tam_arr; i++){
+					outros_horarios.push(arr[i].value);
+				}
+				arr = Array();
+				arr = $('.atendimento-novos-fones');
+				tam_arr = arr.length;
+				outros_fones = Array();
+				for(i = 0; i < tam_arr; i++){
+					aux = $(arr[i]).children().children();
+					outros_fones.push(aux[1].value);
+				}
+
+				outros_atendimentos = Array();
+				for(i = 0; i < tam_arr; i++){
+					outros_atendimentos += '\nID CRBB - (' + outros_fones[i] + ') - ' + outros_horarios[i] + ' - Novo contato';
+				}
+
+				id_crbb = '';
+				id_crbb += '\n================================\n';
+				id_crbb += 'ID CRBB - (' + $('#input-atendimento-roi-fone-00').val() + ') - ';
+				id_crbb += $('#input-horario-atendimento-00').val();
+				id_crbb += outros_atendimentos;
+				id_crbb += '\n================================';
+
+				texto_parecer = '';
+				texto_parecer += $('#observacoes').val();
+				texto_parecer += id_crbb;
+				gerarTexto(texto_parecer);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para o parecer gerado', 'gerar_texto');
+			});
+
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA BLOQUEIO DE CONTAS
+			$('#btn-atendimento-roi-bloqueio-deb').click(function(){
+				$('#div-atendimento-roi-bloqueio-deb').toggle('slow');
+			});
+			$('#btn-atendimento-roi-bloqueio-deb-cancelar-texto').click(function(){
+				$('#div-atendimento-roi-bloqueio-deb').hide('slow');
+			});
+			$('#btn-atendimento-roi-bloqueio-deb-gerar-texto').click(function(){
+				valor = $('#input-atendimento-roi-bloqueio-deb-valor').val();
+				data = $('#input-atendimento-roi-bloqueio-deb-data').val();
+				mci = $('#input-mci-cliente').val();
+				roi = $('#input-atendimento-roi-numero-processo').val();
+				verifica = '';
+				if(valor.trim() == ''){
+					verifica += '<b><u>VALOR</u></b> '
+				}
+				if(data.trim() == ''){
+					verifica += '<b><u>DATA</u></b> '
+				}
+				if(mci.trim() == ''){
+					verifica += '<b><u>MCI</u></b> '
+				}
+				if(roi.trim() == ''){
+					verifica += '<b><u>ROI</u></b> '
+				}
+
+				if(verifica == ''){
+					texto_deb = 'Cliente MCI ' + mci +  ' contesta transferência a favor do titular na data de ' + data +  ', valor de R$ ' + valor +  ', conforme processo ROI ' + roi +  '. Proceder conforme in 645-2, item 22.1.';
+					gerarTexto(texto_deb);
+					$('#btn-atendimento-roi-bloqueio-deb').removeClass('btn-textos-a-fazer');
+					$('#btn-atendimento-roi-bloqueio-deb').addClass('btn-textos-feito');
+					toastVerde('Texto para bloqueio DEB gerado', 'gerar_texto');
+				}else{
+					toastAmarelo('Atenção! Faltou preencher os seguintes campos: ' + verifica);
+				}
+			});
+
+			//---------------ATENDIMENTO PRÉ-ROI--------------------
+			//ATENDIMENTO-PRE-ROI ARQUIVO
+			$('#btn-atendimento-pre-roi-arquivo').click(function(){
+				sms = verificarSMS();
+				texto_arquivo = '\n';
+				texto_arquivo += 'Horário:	'		+ $('#input-horario-atendimento-00').val() + '\n';
+				texto_arquivo += 'Nome:		'		+ $('#input-nome-cliente').val() + '\n';
+				texto_arquivo += 'Agência:	' 		+ $('#input-agencia-cliente').val().trim() + '\n';
+				texto_arquivo += 'Conta:		' 	+ $('#input-conta-cliente').val() + '\n';
+				texto_arquivo += 'CPF:		' 		+ $('#input-cpf-cliente').val() + '\n';
+				texto_arquivo += 'MCI:		' 		+ $('#input-mci-cliente').val() + '\n';
+				texto_arquivo += sms;
+				texto_arquivo += '======================================\n';
+				texto_arquivo += 'ARES:		'		+ $('#input-atendimento-pre-roi-numero-processo').val() + '\n';
+				texto_arquivo += 'Fone:		'		+ $('#input-atendimento-pre-roi-fone').val() + '\n';
+				texto_arquivo += 'Parecer:\n'		+ $('#observacoes').val();
+				texto_arquivo += '\n======================================\n\n\n\n';
+				gerarTexto(texto_arquivo);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para arquivo gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-PRE-ROI PLATAFORMA
+			$('#btn-atendimento-pre-roi-plataforma').click(function(){
+				arr = $('.chk-verificar-seguranca');
+				tam_arr = arr.length;
+				aux = '';
+				verificacoes = '';
+				for(i = 0; i < tam_arr; i++){
+					if($(arr[i]).prop('checked')){
+						//aux += arr[i].id.replace('chk-verificar-seguranca-','') + ' / ';
+						aux += $(arr[i]).val() + ' / ';
+					}
+				}
+				if(aux.length > 0){
+					verificacoes = '\n-Verificações Pré-ROI efetuadas: ' + aux;
+					verificacoes = verificacoes.slice(0, verificacoes.length - 3);
+				}
+
+				texto_plataforma = 'CRBB SJP - Atendimento Pré-ROI. \n';
+				texto_plataforma += 'Tipologia sugerida: ' +  $('#input-atendimento-pre-roi-select-tipologias').val() + '. \n';
+				texto_plataforma += $('#observacoes').val();
+				texto_plataforma += verificacoes;
+				gerarTexto(texto_plataforma);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para plataforma gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-PRE-ROI EXCEL
+			$('#btn-atendimento-pre-roi-excel').click(function(){
+				data = getDataAtual();
+				sms = verificarSMS();
+				if(sms.length > 0){
+					sms = 'X';
+				}else{
+					sms = '';
+				}
+				mci = $('#input-mci-cliente').val();
+				cliente = $('#input-nome-cliente').val();
+				assunto = 'Pré-ROI';
+				tipo_fraude = $('#input-atendimento-pre-roi-select-tipologias').val();
+				if(tipo_fraude == 0){
+					tipo_fraude = '';
+				}
+				valor = '';
+				numero_processo = $('#input-atendimento-pre-roi-numero-processo').val();
+				texto_excel = data + '\t' + mci + '\t' + cliente + '\t' + assunto + '\t' + numero_processo + '\t' + sms + '\t' + tipo_fraude + '\t' + valor;
+				gerarTexto(texto_excel);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Registro para Excel gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-PRE-ROI ARES
+			$('#btn-atendimento-pre-roi-ares').click(function(){
+				arr = $('.chk-verificar-seguranca');
+				tam_arr = arr.length;
+				aux = '';
+				verificacoes = '';
+				for(i = 0; i < tam_arr; i++){
+					if($(arr[i]).prop('checked')){
+						//aux += arr[i].id.replace('chk-verificar-seguranca-','') + ' / ';
+						aux += $(arr[i]).val() + ' / ';
+					}
+				}
+				if(aux.length > 0){
+					verificacoes = '\n-Verificações Pré-ROI efetuadas: ' + aux;
+					verificacoes = verificacoes.slice(0, verificacoes.length - 3);
+				}
+
+				texto_ares = 'CRBB SJP - Atendimento Pré-ROI.\n';
+				texto_ares += 'Tipologia sugerida: ' +  $('#input-atendimento-pre-roi-select-tipologias').val() + '. \n';
+				texto_ares += $('#observacoes').val();
+				texto_ares += verificacoes;
+				gerarTexto(texto_ares);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para ficha ARES gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-PRE-ROI: GERAR TEXTO PARA BLOQUEIO DE CONTAS
+			$('#btn-atendimento-pre-roi-bloqueio-deb').click(function(){
+				$('#div-atendimento-pre-roi-bloqueio-deb').toggle('slow');
+			});
+			$('#btn-atendimento-pre-roi-bloqueio-deb-cancelar-texto').click(function(){
+				$('#div-atendimento-pre-roi-bloqueio-deb').hide('slow');
+			});
+			$('#btn-atendimento-pre-roi-bloqueio-deb-gerar-texto').click(function(){
+				valor = $('#input-atendimento-pre-roi-bloqueio-deb-valor').val();
+				data = $('#input-atendimento-pre-roi-bloqueio-deb-data').val();
+				mci = $('#input-mci-cliente').val();
+				verifica = '';
+				if(valor.trim() == ''){
+					verifica += '<b><u>VALOR</u></b> '
+				}
+				if(data.trim() == ''){
+					verifica += '<b><u>DATA</u></b> '
+				}
+				if(mci.trim() == ''){
+					verifica += '<b><u>MCI</u></b> '
+				}
+
+				if(verifica == ''){
+					texto_deb = 'Cliente MCI ' + mci + ' contesta transferência a favor do titular na data de ' + data + ', valor de R$ ' + valor + '. Proceder conforme in 645-2, item item 22.1.';
+					gerarTexto(texto_deb);
+					$('#btn-atendimento-pre-roi-bloqueio-deb').removeClass('btn-textos-a-fazer');
+					$('#btn-atendimento-pre-roi-bloqueio-deb').addClass('btn-textos-feito');
+					toastVerde('Texto para bloqueio DEB gerado', 'gerar_texto');
+				}else{
+					toastAmarelo('Atenção! Faltou preencher os seguintes campos: ' + verifica);
+				}
+			});
+
+			//FIM BLOCO GERAR TEXTOS*****************************************************************/
+
+
+
+
+			//ATENDIMENTO-CONSULTA: ************************************************************
+			$('.input-radio').click(function(){
+				value = $(this).val();
+				roi = $('#input-atendimento-consulta-roi').val();
+				switch(value){
+					case 'encerrado-onus-bb':
+						$('#observacoes').val('Consulta do ROI ' + roi + ', processo encerrado como favorável ao ressarcimento.');
+					break;
+					case 'encerrado-onus-bb-cdc-pendente':
+						$('#observacoes').val('Consulta do ROI ' + roi + ', processo encerrado favorável ao ressarcimento porém CDC fraudulento não foi cancelado. Caso encaminhado à GESIN.');
+					break;
+					case 'encerrado-onus-bb-cdc-resolvido':
+						$('#observacoes').val('Consulta do ROI ' + roi + ', processo encerrado favorável. CDC pendente normalizado pela GESIN.');
+					break;
+					case 'encerrado-onus-cliente':
+						$('#observacoes').val('Consulta do ROI ' + roi + ', processo encerrado como improcedente, desfavorável ao ressarcimento.');
+					break;
+					case 'encerrado-onus-cliente-cdc-pendente':
+						$('#observacoes').val('Consulta do ROI ' + roi + ', processo encerrado como improcedente, desfavorável ao ressarcimento. Cliente encaminhado à agência para abertura de processo GSS (IN-645) para contestação de CDC.');
+					break;
+					case 'em-andamento':
+						$('#observacoes').val('Consulta do ROI ' + roi + ', processo em andamento.');
+					break;
+				}
+			});//FIM ATENDIMENTO-CONSULTA: ************************************************************
+
+
+
+
+			//ATENDIMENTO-TEXTOS-TIPOLOGIAS*****************************************************************
+			//CARREGAS AS TIPOLOGIAS NO DROPDOWN DO PARECER
+			function carregarTipologias(){
+				arr = $('.chk-tipologia');
+				tam_arr = arr.length;
+				tipologias = Array();
+				for(i = 0; i < tam_arr; i++){
+					aux = $(arr[i]).attr('class').replace('chk-tipologia-', '');
+					aux = aux.replace(' chk-tipologia','');
+
+					if($.inArray(aux, tipologias) == -1){
+						tipologias.push(aux)
+					}
+				}
+
+				html = '<option class = "select-tipologia" value = "0">--</option>';
+				tam_tipologias = tipologias.length;
+				for(i = 0; i < tam_tipologias; i++){
+					html += '<option class = "select-tipologia-' + tipologias[i] + ' select-tipologia" value = ' + tipologias[i] + '>' + tipologias[i].replace('-', ' ') + '</option>';
+				}
+				$('#input-atendimento-roi-select-tipologias').html(html);
+				$('#input-atendimento-pre-roi-select-tipologias').html(html);
+			}
+
+			//CARREGAR OS TEXTOS DA TIPOLOGIA SELECIONADA NO LADO DIREITO DOS DADOS
+			$('.select-tipologia').click(function(){
+				$('#div-atendimento-roi-chk-tipologias').hide('slow');
+				$('#div-atendimento-pre-roi-chk-tipologias').hide('slow');
+				$('#div-atendimento-pre-roi-chk-tipologias').children().remove();
+				$('#div-atendimento-roi-chk-tipologias').children().remove();
+
+				tipologia = this.value;
+
+				arr = $('.chk-tipologia-' + tipologia);
+				tam_arr = arr.length;
+				html = '';
+				for (i = 0; i < tam_arr; i++){
+					arr[i].id = 'chk-tipologia-' + tipologia + '-' + i;
+					html += arr[i].outerHTML + '<label for = "' + arr[i].id + '">' + arr[i].name + '</label><br>';
+				}
+
+				if(tam_arr == 0 && $('#div-atendimento-roi').is(':visible')){
+					$('#div-atendimento-roi-chk-tipologias').hide('slow');
+					$('#div-atendimento-roi-chk-tipologias').children().remove();
+				}
+
+				if(tam_arr == 0 && $('#div-atendimento-pre-roi').is(':visible')){
+					$('#div-atendimento-pre-roi-chk-tipologias').hide('slow');
+					$('#div-atendimento-pre-roi-chk-tipologias').children().remove();
+				}
+				if($('#div-atendimento-roi').is(':visible')){
+					$('#div-atendimento-roi-chk-tipologias').html(html);
+					$('#div-atendimento-roi-chk-tipologias').show('slow');
+				}
+				if($('#div-atendimento-pre-roi').is(':visible')){
+					$('#div-atendimento-pre-roi-chk-tipologias').html(html);
+					$('#div-atendimento-pre-roi-chk-tipologias').show('slow');
+				}
+
+			});
+			//ATUALIZAR AS OBSERVAÇÕES COM O TEXTO SELECIONADO
+			$(document).on ('click', '.chk-tipologia', function(){
+				if($(this).prop('checked')){
+					if($('#observacoes').val() != ''){
+						obs = $('#observacoes').val() + '\n';
+					}else{
+						obs = $('#observacoes').val();
+					}
+					obs += $('#' + this.id).val();
+					$('#observacoes').val(obs);
+
+					if($(this).val().indexOf('CDC') != -1){
+						alertaCDC = true
+						toastVermelho('Inserir CDC no processo!');
+					}
+				}
+			});
+			//FIM-ATENDIMENTO-TEXTOS-TIPOLOGIAS*************************************************************
+
+
+
+			//MOSTRAR / ESCONDER DIV TERMO DE COMPROMISSO
+			$('#btn-termo-compromisso').click(function(){
+				$('#div-termo-compromisso').toggle('slow');
+			});
+
+			//MOSTRAR / ESCONDER DIV VERIFICAÇÕES DE SEGURANÇA
+			$('#btn-verificacoes-seguranca').click(function(){
+				$('#div-verificacoes-seguranca').toggle('slow');
+			});
+			//REALÇAR AS VERIFICAÇÕES DE SEGURANÇA QUE FORAM MARCADAS OU DESMARCADAS
+			$('.chk-verificar-seguranca').click(function(){
+				verificacao = this.id.replace('chk', 'td');
+				$('#' + verificacao).toggleClass('verificacao-seguranca-feita');
+			});
+
+			//MOSTRAR / ESCONDER DIV ALINHAR TRANSAÇÕES EXTRATO
+			$('#btn-alinhar-transacoes-extrato').click(function(){
+				$('#div-alinhar-transacoes-extrato').toggle('slow');
+			});
+
+
+			//ALINHAR TRANSAÇÕES DO EXTRATO
+			$('#alinhar-transacoes-extrato').on('paste', function(){
+				setTimeout(function(){
+						arr = $('#alinhar-transacoes-extrato').val();
+						while(arr.indexOf('[Detalhar]') != -1){
+							arr = arr.replace('[Detalhar]', ' ');
+						}
+						arr = arr.replace(/\n/g, '  ');
+						arr = arr.split('\t');
+						extrato_alinhado = '';
+						tam_arr = arr.length;
+						for(i = 0; i < tam_arr - 1; i++){
+							extrato_alinhado += arr[i] + '  ';
+							if(i > 0 && (i + 1) % 7 == 0){
+								extrato_alinhado += '\n';
+								arr[i+1] = arr[i+1].trim();
+							}
+						}
+						$('#alinhar-transacoes-extrato').val(extrato_alinhado);
+				}, '50');
+			});
+			//COPIAR TRANSAÇÕES ALINHADAS
+			$('#btn-copiar-transacoes-alinhadas').click(function(){
+				$('#alinhar-transacoes-extrato').select();
+				document.execCommand('copy');
+				$('#alinhar-transacoes-extrato').val('');
+			});
+			//LIMPAR CAMPO DAS TRANSAÇÕES ALINHADAS
+			$('#btn-limpar-transacoes-alinhadas').click(function(){
+				$('#alinhar-transacoes-extrato').val('');
+			});
+
+
+
+
+			//COPIAR AS INFORMAÇÕES DO CAMPO QUANDO CLICAR NO LABEL
+			$(document).on('click', '.lbl-copy', function(){
+				id_input = this.id.replace('lbl', 'input');
+				value = $('#' + id_input).val();
+				if(id_input.indexOf('select-tipologias') != -1){
+					$('#mensagens').val(value);
+					$('#mensagens').select();
+					document.execCommand('copy');
+				}else if(id_input.indexOf('cpf') != -1){
+					$('#mensagens').val($('#input-cpf-cliente').val().replace(/\./g, '').replace('-', ''));
+					$('#mensagens').select();
+					document.execCommand('copy');
+
+				}else{
+					$('#' + id_input).select();
+					document.execCommand('copy');
+					$('#mensagens').select();
+				}
+
+				if($('#' + id_input).val() != ''){
+					toastVerde('Informação selecionada', 'gerar_texto');
+				}
+			});
+
+
+
+			//********************FUNÇÕES************************
+
+
+			//VERIFICAR VERSÃO DO NAVEGADOR PARA EVITAR CONFLITOS COM AS VERSÕES ANTIGAS DO MOZILLA, QUE NÃO ACEITAM CTRL+C AUTOMÁTICO DE CONTEÚDO HTML
+			function getVersaoNavegador(){
+				versao_navegador = navigator.userAgent;
+				//versao_navegador = '38';
+				versao_navegador = versao_navegador.substr(versao_navegador.length-4);
+				versao_navegador = parseFloat(versao_navegador);
+				if(versao_navegador < 52){
+					return false;
+				}
+				return true;
+			}
+
+			//CARREGAR O SELECT DE ESTILO COM O ESTILO SELECIONADO NO <head></head>
+			function verificarEstilo(){
+				aux = $('#link-estilo')[0].href;
+				aux = aux.split('css/')[1];
+				$('#select-estilo option[value = "' + aux + '"]').prop('selected', true);
+			}
+
+			function carregarTitulo(){
+				titulo = $('#titulo-sistema')[0].text;
+				$('#titulo-principal').text(titulo);
+			}
+
+            //LIMPAR TODO O CONTEÚDO, ESCONDER AS DIVS E RETORNAR PARA A DIV ATENDIMENTO-OUTROS
+			function limparConteudo(){
+				alertaCDC = false;
+				$('.atendimento').hide('slow');
+
+				$('.input').val('');
+				$('#mensagens').val('');
+				$('.input-radio').prop('checked', false);
+				$('input:checkbox').prop('checked', false);
+				$('#div-atendimento-roi-chk-tipologias').hide('slow');
+				$('#div-atendimento-pre-roi-chk-tipologias').hide('slow');
+				$('#div-atendimento-roi-chk-tipologias').children().remove();
+				$('#div-atendimento-pre-roi-chk-tipologias').children().remove();
+				$('.btn-assunto').removeClass('btn-atendimento-ativo');
+				$('.btn-assunto').addClass('btn-atendimento-inativo');
+				$('.btn-textos').removeClass('btn-textos-feito');
+				$('#btn-assunto-outros').removeClass('btn-atendimento-inativo');
+				$('#btn-assunto-outros').addClass('btn-atendimento-ativo');
+				$('#div-atendimento-outros').show('slow');
+				$('#rad-atendimento-consulta-assunto-outros').prop('checked', true);
+				$('#span-novo-horario-atendimento').children().hide('slow');
+				$('#div-atendimento-roi-bloqueio-deb').hide('slow');
+				$('#div-atendimento-pre-roi-bloqueio-deb').hide('slow');
+				$('.td-verificar-seguranca').removeClass('verificacao-seguranca-feita');
+				setTimeout(function(){
+					$('#span-novo-horario-atendimento').children().remove();
+					$('.atendimento-novos-fones').remove();
+				}, '1000');
+
+
+
+			}
+
+			//ADICIONAR INFORMAÇÃO DE SMS VENDIDO NOS TEXTOS GERADOS
+			function verificarSMS(){
+				sms = '';
+				if($('#chk-venda-sms').prop('checked')){
+					sms = 'SMS Vendido\n';
+				}
+				return sms;
+			}
+
+			//SEPARAR AS INFORMAÇÕES DO CLIENTE CAPTURADAS DA PLATAFORMA
+			function separarInfos(){
+				nome = '';
+				agencia = '';
+				conta = '';
+				cpf = '';
+				mci = '';
+
+				string = $('#texto-plataforma').val();
+				string = string.split('\n');
+				tam_string = string.length;
+
+				nome = string[1];
+				mci = string[tam_string - 2];
+
+				for(i = 0; i < tam_string; i++){
+					if(string[i].indexOf('Ag  ') != -1){
+						aux = string[i].split('Conta');
+						conta = aux[1].trim();
+						agencia = aux[0];
+						agencia = agencia.replace('Ag','').trim();
+					}
+					if(string[i].indexOf('CPF') != -1){
+						cpf = string[i].replace('CPF', '').trim();
+					}
+				}
+
+				$('#input-nome-cliente').val(nome);
+				$('#input-mci-cliente').val(mci);
+				$('#input-cpf-cliente').val(cpf);
+				$('#input-conta-cliente').val(conta);
+				$('#input-agencia-cliente').val(agencia);
+
+				horario = new Date();
+				h = ('0'+horario.getHours()).slice(-2);
+				m = ('0'+horario.getMinutes()).slice(-2);
+				$('#input-horario-atendimento-00').val(h + 'h' + m);
+
+				$('#texto-plataforma').val('');
+			}
+
+
+			//GERAR TEXTOS NA TEXTAREA #mensagens PARA CTRL+C
+			function gerarTexto(texto){
+				$('#mensagens').val(texto);
+				$('#mensagens').select();
+				if(navegador_atualizado){
+					document.execCommand('copy');
+				}
+			}
+
+			//DATA DE HOJE
+			function carregarData(){
+				data_atual = getDataAtual();
+				dia_semana = date.getDay();
+				arr = ['S', 'T', 'Q', 'Q', 'S'];
+				tam_arr = arr.length;
+				semana = '';
+				for (i = 0; i < tam_arr; i++){
+					if(i == dia_semana - 1){
+						semana += '<span class = "semana-ativa">' + arr[i] + '</span>';
+					}else{
+						semana += '<span class = "semana-inativa">' + arr[i] + '</span>';
+					}
+				}
+
+				setInterval(function(){
+					date = new Date();
+					aux = date.toString().split('GMT')[0];
+					aux = aux.split(' ');
+					horario = aux[4];
+					$('#lbl-data').html(semana + ' . ' + data_atual + ' . ' + horario);
+				}, '1000');
+
+			}
+
+			function getDataAtual(){
+				date = new Date();
+				dia_mes = date.getDate();
+				mes = date.getMonth() + 1;
+				ano = date.getFullYear();
+
+				if(dia_mes < 10){
+					dia_mes = '0' + dia_mes;
+				}
+				if(mes < 10){
+					mes = '0' + mes;
+				}
+				data_atual = dia_mes + ' / ' + mes + ' / ' + ano;
+				return data_atual;
+			}
+
+
+			/*BLOCO PARA GERAR MENSAGENS TOAST (POP-UP)**************************************************************/
+			function toastVerde(mensagem, tipo){
+
+                if(navegador_atualizado && tipo == 'gerar_texto'){
+					mensagem += ' e copiado(a)!';
+				}else if(!navegador_atualizado && tipo == 'gerar_texto'){
+					mensagem += ' (<b>Necessário Ctrl+C</b>)';
+				}
+
+
+				$.toast({
+						text: mensagem,
+						icon: 'success',
+						position: 'top-center',
+						showHideTransition: 'slide'
+				});
+			}
+			function toastVermelho(mensagem){
+				$.toast({
+					text: mensagem,
+					icon: 'warning',
+					position: 'top-center',
+					showHideTransition: 'slide',
+					bgColor : '#cc0000',
+					hideAfter: false,
+					allowToastClose: true,
+				});
+			}
+
+			function toastAmarelo(mensagem){
+				$.toast({
+					text: mensagem,
+						icon: 'warning',
+						position: 'top-center',
+						showHideTransition: 'slide',
+						bgColor: '#ffa31a',
+						loaderBg: '#ff8533',
+				});
+			}
+			/*FIM BLOCO PARA GERAR MENSAGENS TOAST (POP-UP)**************************************************************/
+
+		});
+	</script>
+
+
+	<div id = "div-checkboxes-tipologias" class = "atendimento">
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "D+0" 					value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Não disponível" 		value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Cartão" 				value = "- Está de posse do cartão nº 0000, bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Sem chip" 				value = "- Cartão sem chip"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Fragilidade" 			value = "- Não relata nenhuma outra situação que possa ter resultado em fragilidade das informações bancárias"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Bloqueio senhas" 		value = "- Senha de 6 dígitos bloqueada, código de acesso inativo"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "CDC" 					value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Cheque especial" 		value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "D+0" 						value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Não disponível" 			value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Cliente informa que:" 		value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Cartão" 					value = "- Teve cartão nº 0000 roubado em 00/00 fora de ambiente BB"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Senhas anotadas" 			value = "- Senhas estavam anotadas junto ao cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Sem senhas" 				value = "- Afirma que senhas não estavam anotadas junto ao cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Entry mode 5" 				value = "- Compra feita com Entry Mode : 05 - CARTAO COM CHIP"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Bloqueio senhas" 			value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Bloqueio cartão" 			value = "- Cartão bloqueado em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "CDC" 						value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Cheque especial" 			value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Roubo-Perda chk-tipologia" name = "Investimento" 				value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "D+0" 							value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Não disponível" 				value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Cliente informa que:" 			value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Setor segurança" 				value = "- Recebeu suposto contato de setor de segurança perguntando se reconhecia transação com seu cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "4004-0001" 						value = "- Terceiro pediu que entrasse em contato com o 4004-0001"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Digitou senhas" 				value = "- Digitou senhas no telefone"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Informou senhas" 				value = "- Informou senhas na ligação"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Entregou cartão" 				value = "- Motoboy foi buscar cartão em sua residência"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Bloqueio senhas" 				value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Bloqueio cartão" 				value = "- Cartão bloqueado em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "CDC" 							value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Cheque especial" 				value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-2-Motoboy chk-tipologia" name = "Investimento" 					value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "D+0" 					value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Não disponível" 		value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Agência" 				value = "- Estava na agência 0000 em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Terceiro" 				value = "- Foi abordado por terceiro que lhe ofereceu ajuda"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Troca" 					value = "- Cliente percebeu que seu cartão tinha sido trocado após sair da agência"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Cartão cliente" 		value = "- Seu cartão nº 000 foi bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Cartão trocado" 		value = "- Cartão trocado em sua posse nº 000, ag 0000 cc 0000 também bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Bloqueio senhas" 		value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "CDC" 					value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Cheque especial" 		value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-3-Troca-de-Cartão chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "D+0" 					value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "Não disponível" 			value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "Sequestro relâmpago" 	value = "- Foi vítima de sequestro relâmpago, tendo que fazer transações sob coação"/>
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "Abordagem" 				value = "- Sofreu abordagem por indivíduos em ambiente fora do BB"/>
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "CDC" 					value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "Bloqueio senhas"			value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "Cheque especial" 		value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-4-Coação chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "D+0" 							value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "Cliente informa que:" 			value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "SMS" 							value = "- Recebeu mensagem SMS pedindo que realizasse atualização cadastral"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "APP" 							value = "- Recebeu mensagem no APP pedindo que realizasse atualização cadastral"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "Site BB" 						value = "- Recebeu mensagem no site do banco pedindo que realizasse atualização cadastral"/>
+    	<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "Módulo segurança" 				value = "- Realizou atualização do módulo de segurança informando senhas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "Informou dados" 				value = "- Confirmou dados e informou senhas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "Bloqueio cartao" 				value = "- Informou dados do cartão nº 000, já bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "Bloqueio senhas"		 		value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "CDC" 							value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "Cheque especial" 				value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-5-Internet chk-tipologia" name = "Investimento" 					value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "D+0" 					value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Não disponível" 		value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Agência" 				value = "- Esteve na agência 0000 em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Falso comprovante" 	value = "- Foi abordado por terceiro para realizar suposto procedimento de segurança solicitando em suposto comprovante impresso no terminal"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Terceiro" 				value = "- Foi abordado por terceiro que afirmou que cliente não havia encerrado o terminal"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Posse cartão" 			value = "- Está de posse do cartão nº 0000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Biometria" 			value = "- Afirma ter utilizado biometria no terminal"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Bloqueio senhas"		value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "CDC" 					value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Cheque especial" 		value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-6-Auxílio-de-Terceiros chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "D+0" 					value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "Utiliza URA" 			value = "- Costuma utilizar a URA como forma de pagamento"/>
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "Não Utiliza URA" 		value = "- Não utiliza a URA como forma de pagamento e não sabe a senha de 4 dígitos"/>
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "Link" 					value = "- Recebeu mensagem pedindo que realizasse atualização cadastral"/>
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "Informou dados" 		value = "- Confirmou dados e informou senhas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "CDC" 					value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "Cheque especial" 		value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-7-URA chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "D+0" 					value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Não disponível" 			value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Agência" 				value = "- Seu cartão ficou retido no TAA na agência 0000 em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Celular terceiro" 		value = "- Utilizou celular de terceiro para relatar o ocorrido, terceiro digitou o nº de suposta central do BB"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Telefone em adesivo" 	value = "- Sob orientação de terceiro ligou para nº de telefone que estava em um adesivo no TAA, utilizou seu próprio telefone"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Falso funci" 			value = "- Suposto funcionário pediu que confirmasse dados e senhas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Cartão" 					value = "- Cartão nº 000 bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Bloqueio senhas"			value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "CDC" 					value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Cheque especial" 		value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-8-Retenção-de-Cartão chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "D+0" 						value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "Não disponível" 			value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "Cliente informa que:" 		value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "Posse cartão" 				value = "- Está de posse do cartão nº 000, bloqueado total"/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "Conhecimento senhas" 		value = "- Afirma que ninguém mais utiliza o cartão ou sabe as senhas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "Entry mode" 				value = "- Transações feitas com Entry Mode : 05 - CARTAO COM CHIP"/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "Bloqueio senhas"			value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "CDC" 						value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "Cheque especial" 			value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-11-Cartão-Com-Chip chk-tipologia" name = "Investimento" 				value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Auto contestação" 		value = "* Suspeita de Auto Contestação *"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "D+0" 						value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Não disponível" 			value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Posse cartão" 			value = "- Está de posse do cartão nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Conhecimento senhas" 		value = "- Afirma que ninguém mais utiliza o cartão ou sabe as senhas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Entry mode" 				value = "- Transações feitas com Entry Mode : 05 - CARTAO COM CHIP"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Transações internet" 				value = "- Transações feitas pela internet. Únicos equipamentos cadastrados para acesso ao APP são do cliente"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Bloqueio senhas"			value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "CDC" 						value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Cheque especial" 			value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-18-Auto-Contestação chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "D+0" 						value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Não disponível" 			value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "iFood" 					value = "- Não reconhece transação da iFOOD em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Uber" 					value = "- Não reconhece transação da UBER em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Netflix" 					value = "- Não reconhece transação da NETFLIX em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "99 Pop" 					value = "- Não reconhece transação da 99POP em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Spotify" 					value = "- Não reconhece transação da SPOTIFY em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Entry mode 01" 			value = "- Transações realizadas com Entry Mode 01 MANUAL (KEY ENTRY)"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Entry mode 10" 			value = "- Transações realizadas com Entry Mode 10 CREDENTIALS ON FILE"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Entry mode 81" 			value = "- Transações realizadas com Entry Mode 81 CHIP-COMERC.ELETRONICO"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Posse cartão" 			value = "- Cartão nº 0000 bloqueado total, em posse do cliente"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Bloqueio tarja" 			value = "- Cartão estava com bloqueio de tarja, permitindo lançamentos"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Cheque especial" 			value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-19-Clonagem-Cartão-Sem-Chip chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "D+0" 					value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "Sem serviço" 			value = "- Seu celular estava 'sem serviço' em data próxima à fraude"/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "Recebeu contato" 		value = "- Recebeu contato para fazer atualizações no TAA ou via Link"/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "Troca chip" 				value = "- Teve de trocar o chip de seu celular para voltar a utilizar (operadora XXX)"/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "ATO" 					value = "- Não reconhece dispositivos cadastrados na conta próximo da data da fraude, aparelhos bloqueados"/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "Bloqueio senhas"			value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "CDC" 					value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "Cheque especial" 		value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-21-Desvio-de-Celular chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "D+0" 							value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Não disponível" 				value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Cliente informa que:" 		value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Pedido" 						value = "- Reconhece pedido de envio de cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Recebimento" 					value = "- Não recebeu o cartão nº 0000 em sua residência, bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Endereço cadastro" 			value = "- Reconhece o endereço que está cadastrado para envio de cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Recebeu ligação" 				value = "- Recebeu ligação informando sobre envio do cartão. Informou senhas na ligação"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Rastreio" 					value = "- Código de rastreio 0000 indica apenas que plástico foi postado, sem registro de entrega"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Bloqueio senhas"				value = "- Senhas trocadas/bloqueadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "CDC" 							value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Cheque especial" 				value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-23-Extravio-ECT chk-tipologia" name = "Investimento" 				value = "- Houve resgate de investimento"/>
+
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "D+0" 						value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Não disponível" 			value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Prêmio"					value = "- Recebeu contato afirmando que havia recebido um prêmio"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Compras internet"			value = "- Encontrou anúncio de venda de produto pela internet"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Procedimento em TAA" 		value = "- Recebeu ligação supostamente do BB orientando cliente a realizar atualização de segurança no TAA"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "ATO" 						value = "- Não reconhece dispositivos cadastrados na conta próximo da data da fraude, aparelhos bloqueados"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Mecânico" 				value = "- Recebeu contato de terceiro afirmando ser um conhecido em necessidade de auxílio mecânico na estrada"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Transferências" 			value = "- Realizou as transferências solicitadas"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Whatsapp"					value = "- Recebeu contato por Whatsapp de terceiro afirmando ser um conhecido em necessidade de dinheiro"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Telefone clonado" 		value = "- Descobriu depois do ocorrido que seu conhecido teve o telefone clonado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Beneficiário" 			value = "- Não reconhece o beneficiário da transação"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Credenciais" 				value = "- Afirma que no contato não foram pedidas credenciais ou número do cartão de crédito"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "CDC" 						value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Cheque especial" 			value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-24-Golpe-Contra-Cliente chk-tipologia" name = "Investimento" 			value = "- Houve resgate de investimento"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "D+0" 					value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Não disponível" 		value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Saque" 					value = "- Não reconhece saque de benefício em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Posse cartão" 			value = "- Está de posse do cartão 0000, bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Bloqueio senha" 		value = "- Senha de 6 dígitos bloqueada pelo aplicativo ROI	"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-Cheque chk-tipologia" name = "D+0" 						value = "* Transações em D + 0: cliente orientado a entrar em contato no próximo dia útil."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Cheque chk-tipologia" name = "Cliente informa que:" 		value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Cheque chk-tipologia" name = "Posse da folha" 			value = "- Está em posse da folha de cheque 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Cheque chk-tipologia" name = "Perda / roubo" 			value = "- Não está em posse da folha de cheque 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Cheque chk-tipologia" name = "Emissão" 					value = "- Reconhece emissão do cheque"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Cheque chk-tipologia" name = "Beneficiário" 				value = "- Reconhece beneficiário do cheque"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Cheque chk-tipologia" name = "Sustação" 					value = "- Demais folhas não compensadas foram sustadas, gerando tarifas em conta corrente"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Cheque chk-tipologia" name = "ROI na agência" 			value = "- Orientado a registrar B.O. e abrir ROI na agência"/>
+
+
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "D+0" 					value = "CRBB SJP - Equipe ROI - Abertura de ROI impossibilitada devido ao prazo D+0. Cliente orientado a retornar contato no dia seguinte. Emitidos alertas de segurança."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "D+0 (cartão)" 			value = "CRBB SJP - Equipe ROI - Abertura de ROI impossibilitada devido ao prazo D+0. Cliente orientado a retornar contato após dois dias devido a natureza da transação. Emitidos alertas de segurança."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Não disponível" 			value = "CRBB SJP - Equipe ROI - Abertura de ROI impossibilitada - transações não estão disponíveis na base de dados. Cliente orientado a retornar contato no dia seguinte. Emitidos alertas de segurança."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Endereço desatualizado" 	value = "CRBB SJP - Equipe ROI - Abertura de ROI impossibilitada - endereço desatualizado. Cliente orientado à agência. Emitidos alertas de segurança."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Procurador" 				value = "CRBB SJP - Equipe ROI - Procurador deseja abrir processo de contestação. Procedimento não pode ser realizado pela CRBB conforme IN 645"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Sustação cheque" 		value = "CRBB SJP - Equipe ROI - Cliente deseja sustar folha de cheque, não vinculado à contestação de fraude. Orientado aos canais de autoatendimento ou à agência."/>
+	</div>
+</html>

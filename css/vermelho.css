@@ -1,0 +1,82 @@
+/*******ELEMENTOS QUE PODEM ALTERAR ESTILO**************************************************/
+body{
+	background-color:#440303;
+	color: #b87f2e;
+}
+
+textarea{
+	width: 100%;
+	font-size: 12px;
+}
+
+textarea:hover{
+	border: 1px solid #7300e6;
+}
+
+button, div .btn-atendimento-inativo{
+	background-color: #722626;
+	color: #b87f2e;
+	border: 1px solid #000000;
+}
+
+div .btn-atendimento-inativo:hover, button:hover, div button:hover{
+	background-color: #880c0c;
+	color: #ba9c25;
+	border: 1px solid #660e0e;
+}
+
+.input, select{
+	background-color: #310505;
+	color: #e0caca;
+	border: 1px solid #660e0e;
+}
+
+.input:hover, select:hover{
+	border: 1px solid #cd1010;
+}
+
+.lbl-copy:hover{
+	color: #ffcc00;
+}
+
+#lbl-agencia-cliente:hover{
+	text-decoration: underline;
+}
+
+.semana-inativa{
+	border: 1px solid #722626;
+	padding: 0 3px;
+	color: #722626;
+}
+
+.semana-ativa{
+	border: 1px solid #cd1010;
+	padding: 0 3px;
+	color: #cd1010;
+	font-weight: 900;
+}
+
+div .btn-atendimento-ativo{
+	background-color: #880c0c;
+	color: #b87f2e;
+	border: 1px solid #000000;
+}
+
+div .btn-atendimento-ativo:hover{
+	background-color: #880c0c;
+	color: #b87f2e;
+	border: 1px solid #cd1010;
+}
+
+div .btn-textos-feito{
+	background-color: #0f3d0f;
+	color: #248f24;
+	border: 1px solid #196619;
+}
+
+div .btn-textos-feito:hover{
+	background-color: #0f3d0f;
+	color: #248f24;
+	border: 1px solid #248f24;;
+}
+/**************************************************************************************/

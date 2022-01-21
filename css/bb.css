@@ -1,0 +1,115 @@
+/*******ELEMENTOS QUE PODEM ALTERAR ESTILO**************************************************/
+body{
+	background-color: #007acd;
+	color: white;
+}
+
+textarea{
+	width: 100%;
+	font-size: 12px;
+}
+
+button{
+	background-color: #default;
+	color: black;
+	border: 1px solid black;
+}
+
+button:hover{
+	background-color: #3366ff;
+	color: white;
+	border: 1px solid black;
+}
+
+.input{
+	background-color: #005c99;
+	color: white;
+	border: 1px solid black;
+}
+
+.input:hover{
+	border: 1px solid #ffd741;
+}
+
+select{
+	background-color: 005c99;
+	color: white;
+	border: 1px solid black;
+}
+
+select:hover{
+	border: 1px solid #ffd741;
+}
+
+.lbl-copy:hover{
+	color: #ffd741;
+}
+
+#lbl-agencia-cliente:hover{
+	text-decoration: underline;
+}
+
+.semana-inativa{
+	border: 1px solid #005c99;
+	padding: 0 3px;
+	color: #005c99;
+}
+
+.semana-ativa{
+	border: 1px solid #ffd741;
+	padding: 0 3px;
+	color: ffd741;
+	font-weight: 900;
+}
+
+#div-verificacoes-seguranca table td:hover{
+	border-color: #ffd741;
+}
+
+.verificacao-seguranca-feita{
+	background-color: #005c99;
+}
+
+/*******ELEMENTOS QUE DEVEM ALTERAR COR OU LAYOUT DEPENDENDO DE AÇÕES DO USUÁRIO*******/
+
+div .btn-atendimento-ativo{
+	background-color: #ffd741;
+	border: 1px solid #225195;
+	color: black;
+}
+
+div .btn-atendimento-inativo{
+	background-color: #d9d9d9;
+	color: black;
+}
+
+div .btn-textos-feito{
+	background-color: #00802b;
+	color: white;
+}
+
+div .btn-textos-a-fazer{
+	background-color: #d9d9d9;
+	color: black;
+}
+
+div .btn-atendimento-ativo:hover{
+	background-color: #ffc800;
+	color: black;
+}
+
+div .btn-atendimento-inativo:hover{
+	background-color: #3366ff;
+	color: white;
+}
+
+div .btn-textos-feito:hover{
+	background-color: #009933;
+	color: white;
+}
+
+div .btn-textos-a-fazer:hover{
+	background-color: #d9d9d9;
+	color: black;
+}
+/**************************************************************************************/

@@ -1,0 +1,129 @@
+/*******ELEMENTOS QUE PODEM ALTERAR ESTILO**************************************************/
+body{
+	background-color:#000033;
+	color: #d8adeb;
+}
+
+textarea{
+	width: 100%;
+	font-size: 12px;
+}
+
+textarea:hover{
+	border: 1px solid #7300e6;
+}
+
+button{
+	background-color: #3f1452;
+	color: #c285e0;
+	border: 1px solid #4d004d;
+}
+
+button:hover{
+	background-color: #bfbfbf;
+	color: #000000;
+	border: 1px solid #660066;
+}
+
+.input{
+	background-color: #000000;
+	color: #d8adeb;
+	border: 1px solid #660066;
+}
+
+.input:hover{
+	border: 1px solid #7300e6;
+}
+
+select{
+	background-color: #000000;
+	color: #d8adeb;
+	border: 1px solid #660066;
+}
+
+select:hover{
+	border: 1px solid #7300e6;
+}
+
+.lbl-copy:hover{
+	color: #ffe6ff;
+}
+
+#lbl-agencia-cliente:hover{
+	text-decoration: underline;
+}
+
+.semana-inativa{
+	border: 1px solid #660066;
+	padding: 0 3px;
+	color: #800080;
+}
+
+.semana-ativa{
+	border: 1px solid #e600e6;
+	padding: 0 3px;
+	color: #e600e6
+	font-weight: 900;
+}
+
+#div-verificacoes-seguranca table td:hover{
+	border-color: #7300e6;
+}
+
+.verificacao-seguranca-feita{
+	background-color: #3f1452;
+}
+
+/*******ELEMENTOS QUE DEVEM ALTERAR COR OU LAYOUT DEPENDENDO DE AÇÕES DO USUÁRIO*******/
+div .btn-atendimento-ativo{
+	background-color: #400080;
+	color: #c285e0;
+	border: 1px solid #7300e6;
+}
+
+div .btn-atendimento-ativo:hover{
+	background-color: #400080;
+	color: #c285e0;
+	border: 1px solid #8c1aff;
+}
+
+div .btn-atendimento-inativo{
+	background-color: #3f1452;
+	color: #c285e0;
+
+}
+
+div .btn-atendimento-inativo:hover{
+	background-color: #400080;
+	color: #c285e0;
+	border: 1px solid #7300e6;
+}
+
+div .btn-textos-feito{
+	background-color: #0f3d0f;
+	color: #248f24;
+	border: 1px solid #196619;
+}
+
+div .btn-textos-feito:hover{
+	background-color: #0f3d0f;
+	color: #248f24;
+	border: 1px solid #248f24;;
+}
+
+div .btn-textos-a-fazer{
+	background-color: #3f1452;
+	color: #c285e0;
+}
+
+div .btn-textos-a-fazer:hover{
+	background-color: #ad5cd6;
+	color: #ffffff;
+}
+
+div button:hover{
+	background-color: #400080;
+	color: #c285e0;
+	border: 1px solid #7300e6;
+}
+/**************************************************************************************/
